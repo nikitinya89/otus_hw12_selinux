@@ -79,11 +79,27 @@ ns01                      running (virtualbox)
 client                    running (virtualbox)
 ```
 Попробуем внести изменения, введя команду
-```
+```bash
 nsupdate -k /etc/named.zonetransfer.key
 ```
 Но получаем ошибку **update failed: SERVFAIL**  
 ![2.1](2.1.jpg)  
 Команда `cat /var/log/audit/audit.log | audit2why` ничего не показывает, следовательно ошибок со стороны клиента нет. Выполним ту же команду на сервере.  
 ![2.2](2.2.jpg)  
+Из ошибки следует, что вместо типа **named_t** используется **etc_t**
+```bash
+ls -laZ /etc/named
+```
+![2.3](2.3.jpg)
+
+Измненим тип:
+```bash
+chcon -R -t named_zone_t /etc/named
+
+ls -laZ /etc/named
+```
+![2.4](2.4.jpg)
+
+Теперь повторное выполнение команды с клиента будет успешно:  
+![2.5](2.5.jpg)
 
