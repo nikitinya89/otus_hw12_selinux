@@ -82,4 +82,6 @@ client                    running (virtualbox)
 ```
 nsupdate -k /etc/named.zonetransfer.key
 ```
-Но получаем ошибку **update failed: SERVFAIL**
+Но получаем ошибку **update failed: SERVFAIL**  
+![2.1](2.1.jpg)  
+Команда `cat /var/log/audit/audit.log | audit2why` ничего не показывает, следовательно ошибок со стороны клиента нет. Выполним ту же команду на сервере.
