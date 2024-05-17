@@ -101,7 +101,7 @@ semanage port -l | grep http
 ```bash
 semanage port -a -t http_port_t -p tcp 4881
 ```
-**nginx** снова запускается корректно  
+*nginx* снова запускается корректно  
   
 ![1.5](1.5.jpg)  
 
